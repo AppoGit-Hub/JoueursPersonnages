@@ -1,0 +1,11 @@
+1001 MAIN MENU
+1002 LOAD PLAYER SCORE LIST
+1003 ADD PLAYER AND CHARACTER
+1004 ADD CHARACTER TO PLAYER
+
+2001 player's name:
+2002 charater's name:
+
+5001 This choice is unavailable ! 
+5002 This character is unavailable !
+5003 This player is unavailable ! 
