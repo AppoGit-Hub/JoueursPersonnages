@@ -20,6 +20,10 @@ void libereJoueursPersonnages(Joueur* pDebJoueurs) {
 	free(pDebJoueurs);
 }
 
+void libererJoueur(Joueur* pJoueur) {
+	free(pJoueur);
+}
+
 bool nouveauJoueur(Joueur* pNouvJoueur) {
 	pNouvJoueur = (Joueur*)malloc(sizeof(Joueur));
 	return pNouvJoueur != NULL;

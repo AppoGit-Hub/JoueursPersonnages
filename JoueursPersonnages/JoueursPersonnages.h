@@ -23,6 +23,7 @@
 	bool nouveauJoueur(Joueur* pNouvJoueur);
 	void ajouteJoueur(Joueur* pDebJoueurs, char pseudo[TPSEUDO], Joueur* pNouvJoueur, Joueur* pJoueur, Joueur* pSauvJoueur);
 	bool nouveauPersonnage(Personnage* pNouvPerso);
-	void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouvPerso);
+	void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouvPerso); 
+	void libererJoueur(Joueur* pJoueur);
 #endif 
 
