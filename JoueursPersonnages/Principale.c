@@ -22,7 +22,7 @@ void main(void) {
 			libererLexique(pLexique);
 			break;
 		case ALLOCATION_MEMOIRE:
-			printf("ALLOCATION_MEMOIRE");feggsgedsgcdsdsgsegds
+			printf("ALLOCATION_MEMOIRE");
 			libererLexique(pLexique);
 			break;
 		case FICHIER_INEXISTANT:
