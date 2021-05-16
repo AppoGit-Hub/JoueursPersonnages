@@ -31,5 +31,7 @@
 	int pointsObtenu(Message* pLexique);
 	CodeErreur ajouterPersonnageAJoueur(Message* pLexique, Joueur* pDebJoueurs, Joueur* pJoueur, Joueur* pNouvPerso);
 	CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs);
+	void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouvPerso); 
+	void libererJoueur(Joueur* pJoueur);
 #endif 
 

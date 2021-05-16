@@ -2,13 +2,13 @@
 #include "Lexique.h"
 #include "JoueursPersonnages.h"
 
-//les fonctions relatives au dialogue avec l’utilisateur, comme par 
-//exemple l’affichage des divers menus, les obtentions d’informations(noms des
-//personnages…) et l’affichage « en clair » des messages d’erreur renvoyés par les fonctions
-//plus mécaniques(de Gestion et de Fichier par exemple)
+//les fonctions relatives au dialogue avec lï¿½utilisateur, comme par 
+//exemple lï¿½affichage des divers menus, les obtentions dï¿½informations(noms des
+//personnagesï¿½) et lï¿½affichage ï¿½ en clair ï¿½ des messages dï¿½erreur renvoyï¿½s par les fonctions
+//plus mï¿½caniques(de Gestion et de Fichier par exemple)
 
-//FonctionS pour afficher les choix qui s’offrent à l’utilisateur
-//FonctionS de Gestion pour tout ce qui concerne la manipulation de la liste chaînée des joueurs en mémoire
+//FonctionS pour afficher les choix qui sï¿½offrent ï¿½ lï¿½utilisateur
+//FonctionS de Gestion pour tout ce qui concerne la manipulation de la liste chaï¿½nï¿½e des joueurs en mï¿½moire
 //FonctionS de Fichier pour le chargement et la sauvegarde
 
 void afficherMessage(Message* pLexique, int numMessage) {
@@ -162,4 +162,50 @@ int pointsObtenu(Message* pLexique) {
 		if (!estValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + POINTS_NON_VALIDES);
 	} while (!estValide);
 	return points;
+}
+}
+bool joueurExiste(Joueur* pDebJoueur, char* pseudo, Joueur* pJoueur, Joueur* pSauvJoueur) {
+	pJoueur = pDebJoueur;
+	bool existe;
+	while (pJoueur != NULL && pseudo > pJoueur->pseudo) {
+		pSauvJoueur = pJoueur;
+		pJoueur = pJoueur->pSuiv;
+	}
+	existe pJoueur != NULL && pseudo = pJoueur->pseudo;
+	return existe;
+}
+
+CodeErreur ajouterJoueurPersonnages(Message* pLexique, Joueur* pDebJoueur) {
+	CodeErreur codeErreur;
+	Joueur* pNouvJoueur;
+	int reponse;
+	bool  allocationOk = nouveauJoueur(pNouvJoueur);
+	if (!allocationOk) codeErreur = ALLOCATION_MEMOIRE;
+	else {
+		codeErreur = PAS_D_ERREUR;
+		afficherTitre(pLexique, TITRE_JOUEUR_AJOUT);
+		char* pseudo[TPSEUDO] = pseudoObtenu(pLexique);
+		Joueur* pJoueur;
+		Joueur* pSauvJoueur;
+		bool existe = joueurExiste(pDebJoueur, pseudo, pJoueur, pSauvJoueur);
+		
+		if (existe) {
+			codeErreur = JOUEUR_DEJA_PRESENT;
+			libererJoueur(pNouvJoueur);
+		}
+		else {
+			ajouteJoueur(pDebJoueur, pseudo, pNouvJoueur, pJoueur, pSauvJoueur);
+			Personnage* pNouvPerso;
+			do {
+				allocationOk = nouveauPersonnage(pNouvPerso);
+				if (!allocationOk	) codeErreur = ALLOCATION_MEMOIRE;
+				else {
+					codeErreur = ajouterPersonnageAjoueur(pLexique, pDebJoueur, pNouvJoueur, pNouvPerso);
+					if(codeErreur == PAS_D_ERREUR){
+						reponse = reponseObtenue(pLexique, OBT_ENCORE);
+				}
+			} while (allocationOk && codeErreur == PAS_D_ERREUR && reponse == OUI);
+		}
+	}
+	return codeErreur;
 }
