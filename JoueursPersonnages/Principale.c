@@ -4,7 +4,7 @@
 
 
 void main(void) {
-	Message* pLexique = NULL;
+	Message* pLexique = NULL;dqsdqsdq
 	CodeErreur erreurLexique = chargerLexique(&pLexique);
 	
 	/*
