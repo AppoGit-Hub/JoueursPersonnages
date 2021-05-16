@@ -20,9 +20,43 @@ void libereJoueursPersonnages(Joueur* pDebJoueurs) {
 	free(pDebJoueurs);
 }
 
+void liberePersonnage(Personnage* pPersonnage) {
+	free(pPersonnage);
+}
+
 bool nouveauJoueur(Joueur* pNouvJoueur) {
 	pNouvJoueur = (Joueur*)malloc(sizeof(Joueur));
 	return pNouvJoueur != NULL;
+}
+
+bool joueurExiste(
+	Joueur* pDebJoueurs, 
+	char pseudo[TPSEUDO], 
+	Joueur* pJoueur, 
+	Joueur* pSauvJoueur) {
+	pJoueur = pDebJoueurs;
+	while (pJoueur != NULL && pseudo < pJoueur->pseudo)
+	{
+		pSauvJoueur = pJoueur;
+		pJoueur = pJoueur->pSuiv;
+	}
+	return pJoueur != NULL && pseudo == pJoueur->pseudo;
+}
+
+bool personnageExiste(Joueur* pDebJoueurs, char nom[TNOM]) {
+	Joueur* pJoueur = pDebJoueurs;
+	Joueur* pPerso = NULL;
+	bool existe = false;
+	while (pJoueur != NULL && !existe)
+	{
+		pPerso = pJoueur->pDebPersonnages;
+		while (pPerso != NULL && strcmp(nom, pPerso->pseudo))
+		{
+			pPerso = pPerso->pSuiv;
+		}
+		existe = pPerso != NULL && strcmp(nom, pPerso->pseudo);
+		pJoueur = pJoueur->pSuiv;
+	}
 }
 
 void ajouteJoueur(
@@ -39,6 +73,25 @@ void ajouteJoueur(
 	pNouvJoueur->pSuiv = pJoueur;
 }
 
+CodeErreur ajouterPersonnageAJoueur(
+	Message* pLexique, 
+	Joueur* pDebJoueurs, 
+	Joueur* pJoueur, 
+	Joueur* pNouvPerso) {
+	char* nom = nomObtenu(pLexique);
+	bool persoExiste = personnageExiste(pDebJoueurs, nom);
+	if (persoExiste) {
+		afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + PERSONNAGE_DEJA_PRESENT);
+		liberePersonnage(pNouvPerso);
+	}
+	else {
+		int nbrPersonnages = nbPersonnages(pJoueur);
+	}
+
+
+	return PAS_D_ERREUR;
+}
+
 bool nouveauPersonnage(Personnage* pNouvPerso) {
 	pNouvPerso = (Personnage*)malloc(sizeof(Personnage));
 	return pNouvPerso != NULL;
@@ -50,4 +103,15 @@ void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouv
 	pNouvPerso->pSuiv = pJoueur->pDebPersonnages;
 
 	pJoueur->pDebPersonnages = pNouvPerso;
+}
+
+int nbPersonnages(Joueur* pJoueur) {
+	Joueur* pDebut = pJoueur;
+	int nombre = 0;
+	while (pDebut != NULL)
+	{
+		pDebut = pDebut->pSuiv;
+		nombre++;
+	}
+	return nombre;
 }

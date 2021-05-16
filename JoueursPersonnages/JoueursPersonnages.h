@@ -24,5 +24,9 @@
 	void ajouteJoueur(Joueur* pDebJoueurs, char pseudo[TPSEUDO], Joueur* pNouvJoueur, Joueur* pJoueur, Joueur* pSauvJoueur);
 	bool nouveauPersonnage(Personnage* pNouvPerso);
 	void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouvPerso);
+	bool joueurExiste(Joueur* pDebJoueurs, char pseudo[TPSEUDO], Joueur* pJoueur, Joueur* pSauvJoueur);
+	void liberePersonnage(Personnage* pPersonnage);
+	char* nomObtenu(Message* pLexique);
+	bool personnageExiste(Joueur* pDebJoueurs, char nom[TNOM]);
 #endif 
 

@@ -100,11 +100,21 @@ CodeErreur chargerJoueursPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 }
 
 CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs) {
-	Personnage* pNouvPerso = NULL;
-	bool alocationOk = nouveauPersonnage(pNouvPerso);
+	Personnage* pNouvPerso;
+	Joueur* pJoueur;
+	Joueur* pSauvJoueur;
+	bool alocationOk;
+	char* pseudo;
+
+	alocationOk = nouveauPersonnage(pNouvPerso);
 	if (!alocationOk) return ALLOCATION_MEMOIRE;
 	afficherTitre(pLexique, TITRE_JOUEUR_AJOUT);
-	char* pseudo = pseudoObtenu(pLexique);
+	pseudo = pseudoObtenu(pLexique);
+	
+	alocationOk = joueurExiste(pDebJoueurs, pseudo, pJoueur, pSauvJoueur);
+	if (!alocationOk) { liberePersonnage(pNouvPerso); return JOUEUR_ABSENT; }
+	
+	return PAS_D_ERREUR;
 }
 
 char* pseudoObtenu(Message* pLexique) {
@@ -126,4 +136,16 @@ int reponseObtenue(Message* pLexique, int numMessage) {
 		scanf_s("%d", &reponse);
 	}
 	return reponse;
+}
+
+char* nomObtenu(Message* pLexique) {
+	char nom[TNOM];
+	bool estValide;
+	do {
+		afficherMessage(pLexique, OBT_NOM);
+		scanf("%s", &nom);
+		estValide = !strcmp(&nom, "");
+		if (!estValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + NOM_NON_VALIDE);
+	} while (!estValide);
+	return nom;
 }
