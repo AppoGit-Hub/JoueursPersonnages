@@ -105,7 +105,6 @@ CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs) {
 	if (!alocationOk) return ALLOCATION_MEMOIRE;
 	afficherTitre(pLexique, TITRE_JOUEUR_AJOUT);
 	char* pseudo = pseudoObtenu(pLexique);
-
 }
 
 char* pseudoObtenu(Message* pLexique) {
