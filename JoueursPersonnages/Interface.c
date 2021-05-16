@@ -99,6 +99,19 @@ CodeErreur chargerJoueursPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 	return codeErreur;
 }
 
+CodeErreur ajouterJoueurPersonnages(Message* pLexique, Joueur* pDebJoueur) {
+	CodeErreur codeErreur;
+	Joueur* pNouvJoueur;
+	bool  allocationOk = nouveauJoueur(pNouvJoueur);
+	if (!allocationOk) codeErreur = ALLOCATION_MEMOIRE;
+	else {
+		codeErreur = PAS_D_ERREUR;
+		afficherTitre(pLexique,TITRE_JOUEUR_AJOUT);
+		pseudoObtenu
+	}
+	return codeErreur;
+}
+
 int reponseObtenue(Message* pLexique, int numMessage) {
 	int reponse = NON;
 	if (numMessage == OBT_CONTINUER || numMessage == OBT_ENCORE) {
