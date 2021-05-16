@@ -28,5 +28,8 @@
 	void liberePersonnage(Personnage* pPersonnage);
 	char* nomObtenu(Message* pLexique);
 	bool personnageExiste(Joueur* pDebJoueurs, char nom[TNOM]);
+	int pointsObtenu(Message* pLexique);
+	CodeErreur ajouterPersonnageAJoueur(Message* pLexique, Joueur* pDebJoueurs, Joueur* pJoueur, Joueur* pNouvPerso);
+	CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs);
 #endif 
 

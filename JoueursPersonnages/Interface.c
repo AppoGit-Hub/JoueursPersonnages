@@ -51,6 +51,7 @@ void dialogue(Message* pLexique) {
 			case AJOUTER_JOUEUR_PERSONNAGES:
 				break;
 			case AJOUTER_PERSONNAGE_PERSONNAGES:
+				ajouterPersonnage(pLexique, pDebJoueurs);
 				break;
 			case SUPPRIMER_JOUEUR:
 				break;
@@ -114,6 +115,7 @@ CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs) {
 	alocationOk = joueurExiste(pDebJoueurs, pseudo, pJoueur, pSauvJoueur);
 	if (!alocationOk) { liberePersonnage(pNouvPerso); return JOUEUR_ABSENT; }
 	
+	ajouterPersonnageAJoueur(pLexique, pDebJoueurs, pJoueur, pNouvPerso);
 	return PAS_D_ERREUR;
 }
 
@@ -148,4 +150,16 @@ char* nomObtenu(Message* pLexique) {
 		if (!estValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + NOM_NON_VALIDE);
 	} while (!estValide);
 	return nom;
+}
+
+int pointsObtenu(Message* pLexique) {
+	int points;
+	bool estValide;
+	do {
+		afficherMessage(pLexique, OBT_POINTS);
+		scanf("%d", &points);
+		estValide = points > 0 && points < 1000;
+		if (!estValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + POINTS_NON_VALIDES);
+	} while (!estValide);
+	return points;
 }

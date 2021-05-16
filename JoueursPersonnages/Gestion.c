@@ -85,10 +85,9 @@ CodeErreur ajouterPersonnageAJoueur(
 		liberePersonnage(pNouvPerso);
 	}
 	else {
-		int nbrPersonnages = nbPersonnages(pJoueur);
+		if (nbPersonnages(pJoueur) == NBMAXPERSO) return NB_MAX_PERSO_ATTEINT;
+		ajoutePersonnage(pJoueur, nom, pointsObtenu(pLexique), pNouvPerso);
 	}
-
-
 	return PAS_D_ERREUR;
 }
 
