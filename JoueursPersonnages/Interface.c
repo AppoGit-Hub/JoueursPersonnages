@@ -104,7 +104,7 @@ CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs) {
 	bool alocationOk = nouveauPersonnage(pNouvPerso);
 	if (!alocationOk) return ALLOCATION_MEMOIRE;
 	afficherTitre(pLexique, TITRE_JOUEUR_AJOUT);
-	
+	char* pseudo = pseudoObtenu(pLexique);
 
 }
 
@@ -117,6 +117,7 @@ char* pseudoObtenu(Message* pLexique) {
 		pseudoValide = strlen(&pseudo) > 0 && isupper(pseudo[0]);
 		if (!pseudoValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + PSEUDO_NON_VALIDE);
 	} while (!pseudoValide);
+	return pseudo;
 }
 
 int reponseObtenue(Message* pLexique, int numMessage) {
