@@ -81,4 +81,6 @@ CodeErreur chargerJoueurs(Joueur* pDebJoueurs) {
 		if (alocationOk) fread_s(pJoueur, sizeof(Joueur), sizeof(Joueur), 1, pFIJoueurs);
 	}
 	fclose(pFIJoueurs);
+
+	return PAS_D_ERREUR
 }
