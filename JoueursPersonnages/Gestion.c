@@ -76,6 +76,23 @@ void ajouteJoueur(
 	pNouvJoueur->pSuiv = pJoueur;
 }
 
+void supprimeJoueur(
+	Joueur* pDebJoueurs, 
+	Joueur* pJoueur,
+	Joueur* pSauvJoueur) {
+	Personnage* pPerso = pJoueur->pDebPersonnages;
+	Personnage* pSauvPerso;
+	while (pPerso != NULL)
+	{
+		pSauvPerso = pPerso->pSuiv;
+		liberePersonnage(pPerso);
+		pPerso = pSauvPerso;
+	}
+	if (pJoueur = pDebJoueurs) { pDebJoueurs = pJoueur->pSuiv; }
+	else { pSauvJoueur->pSuiv = pJoueur->pSuiv; }
+	libereJoueur(pJoueur);
+}
+
 CodeErreur ajouterPersonnageAJoueur(
 	Message* pLexique, 
 	Joueur* pDebJoueurs, 
