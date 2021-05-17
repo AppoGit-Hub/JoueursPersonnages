@@ -223,14 +223,16 @@ CodeErreur supprimerJoueurPersonnages(Message* pLexique, Joueur* pDebJoueur) {
 	Joueur* pSauvJoueur = NULL;
 	char* pseudo;
 	bool SiJoueurExiste;
-	
+
 	afficherTitre(pLexique, TITRE_JOUEUR_ANNUL);
 	pseudo = pseudoObtenu(pLexique);
 	SiJoueurExiste = joueurExiste(pDebJoueur, pseudo, pJoueur, pSauvJoueur);
 	if (!SiJoueurExiste) return JOUEUR_ABSENT;
 	else supprimeJoueur(pDebJoueur, pJoueur, pSauvJoueur);
-	
+
 	return PAS_D_ERREUR;
+}
+
 void listeJoueurs(Joueur* pDebJoueurs) {
 	Joueur* pJoueur = pDebJoueurs;
 	while (pJoueur != NULL) {
@@ -246,7 +248,6 @@ void afficherJoueursPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 		listeJoueurs(pDebJoueurs);
 	}
 }
-
 
 CodeErreur sauverJoueursPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 	CodeErreur codeErreur = PAS_D_ERREUR;
