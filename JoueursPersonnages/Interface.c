@@ -88,6 +88,7 @@ void dialogue(Message* pLexique) {
 				ajouterPersonnage(pLexique, pDebJoueurs);
 				break;
 			case SUPPRIMER_JOUEUR:
+				supprimerJoueurPersonnages(pLexique, pDebJoueurs);
 				break;
 			case AFFICHER_JOUEURS_PERSONNAGES:
 				afficherJoueursPersonnages(pLexique, pDebJoueurs);
@@ -216,6 +217,20 @@ CodeErreur ajouterJoueurPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 	return codeErreur;
 }
 
+
+CodeErreur supprimerJoueurPersonnages(Message* pLexique, Joueur* pDebJoueur) {
+	Joueur* pJoueur = NULL;
+	Joueur* pSauvJoueur = NULL;
+	char* pseudo;
+	bool SiJoueurExiste;
+	
+	afficherTitre(pLexique, TITRE_JOUEUR_ANNUL);
+	pseudo = pseudoObtenu(pLexique);
+	SiJoueurExiste = joueurExiste(pDebJoueur, pseudo, pJoueur, pSauvJoueur);
+	if (!SiJoueurExiste) return JOUEUR_ABSENT;
+	else supprimeJoueur(pDebJoueur, pJoueur, pSauvJoueur);
+	
+	return PAS_D_ERREUR;
 void listeJoueurs(Joueur* pDebJoueurs) {
 	Joueur* pJoueur = pDebJoueurs;
 	while (pJoueur != NULL) {
