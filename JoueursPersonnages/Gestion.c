@@ -80,7 +80,7 @@ CodeErreur ajouterPersonnageAJoueur(
 	Message* pLexique, 
 	Joueur* pDebJoueurs, 
 	Joueur* pJoueur, 
-	Joueur* pNouvPerso) {
+	Personnage* pNouvPerso) {
 	char* nom = nomObtenu(pLexique);
 	bool persoExiste = personnageExiste(pDebJoueurs, nom);
 	if (persoExiste) {

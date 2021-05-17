@@ -82,5 +82,37 @@ CodeErreur chargerJoueurs(Joueur* pDebJoueurs) {
 	}
 	fclose(pFIJoueurs);
 
-	return PAS_D_ERREUR
+	return PAS_D_ERREUR;
+}
+
+CodeErreur sauverJoueurs(Joueur* pDebJoueurs) {
+	FILE* pFIJoueurs;
+	CodeErreur codeErreur;
+	Joueur* pJoueur;
+	Joueur joueur;
+	Personnage* pPerso;
+	Personnage personnage;
+	int nbrPersonnages;
+	fopen_s(&pFIJoueurs, FIJOUEURS, "ab");
+	if (pFIJoueurs == NULL) codeErreur = FICHIER_INEXISTANT;
+	else{
+		codeErreur = PAS_D_ERREUR;
+		pJoueur = pDebJoueurs;
+		while (pJoueur != NULL) {
+			joueur.pseudo = pJoueur->pseudo;
+			nbrPersonnages = nbPersonnages(pJoueur);
+			joueur.nbPerso = nbrPersonnages;
+			fwrite(&joueur, sizeof(Joueur), 1, pFIJoueurs);
+			pPerso = pJoueur->pDebPersonnages;
+			while (pPerso != NULL) {
+				personnage.nom = pPerso->nom;
+				personnage.xp = pPerso->xp;
+				fwrite(&personnage, sizeof(Personnage), 1, pFIJoueurs);
+				pPerso = pPerso->pSuiv;
+			}
+			pJoueur = pJoueur->pSuiv;
+		}
+		fclose(pFIJoueurs);
+	}
+	return codeErreur;
 }
