@@ -27,9 +27,9 @@ void liberePersonnage(Personnage* pPersonnage) {
 void libererJoueur(Joueur* pJoueur) {
 	free(pJoueur);
 }
-bool nouveauJoueur(Joueur* pNouvJoueur) {
-	pNouvJoueur = (Joueur*)malloc(sizeof(Joueur));
-	return pNouvJoueur != NULL;
+bool nouveauJoueur(Joueur** pNouvJoueur) {
+	*pNouvJoueur = (Joueur*)malloc(sizeof(Joueur));
+	return *pNouvJoueur != NULL;
 }
 
 bool joueurExiste(
@@ -53,22 +53,16 @@ bool personnageExiste(Joueur* pDebJoueurs, char nom[TNOM]) {
 	while (pJoueur != NULL && !existe)
 	{
 		pPerso = pJoueur->pDebPersonnages;
-		while (pPerso != NULL && strcmp(nom, pPerso->pseudo))
+		while (pPerso != NULL && strcmp(nom, pPerso->pseudo) == 0)
 		{
 			pPerso = pPerso->pSuiv;
 		}
-		existe = pPerso != NULL && strcmp(nom, pPerso->pseudo);
+		existe = pPerso != NULL && strcmp(nom, pPerso->pseudo) == 0;
 		pJoueur = pJoueur->pSuiv;
 	}
 }
 
-void ajouteJoueur(
-	Joueur* pDebJoueurs,
-	char pseudo[TPSEUDO],
-	Joueur* pNouvJoueur,
-	Joueur* pJoueur,
-	Joueur* pSauvJoueur) {
-	
+void ajouteJoueur(Joueur* pDebJoueurs, char pseudo[TPSEUDO], Joueur* pNouvJoueur, Joueur* pJoueur, Joueur* pSauvJoueur) {
 	pNouvJoueur->pseudo = pseudo;
 	pNouvJoueur->pDebPersonnages = NULL;
 	if (pJoueur == pDebJoueurs) pDebJoueurs = pNouvJoueur;
@@ -106,14 +100,14 @@ CodeErreur ajouterPersonnageAJoueur(
 	}
 	else {
 		if (nbPersonnages(pJoueur) == NBMAXPERSO) return NB_MAX_PERSO_ATTEINT;
-		ajoutePersonnage(pJoueur, nom, pointsObtenu(pLexique), pNouvPerso);
+		ajoutePersonnage(pJoueur, &nom, pointsObtenu(pLexique), pNouvPerso);
 	}
 	return PAS_D_ERREUR;
 }
 
-bool nouveauPersonnage(Personnage* pNouvPerso) {
-	pNouvPerso = (Personnage*)malloc(sizeof(Personnage));
-	return pNouvPerso != NULL;
+bool nouveauPersonnage(Personnage** pNouvPerso) {
+	*pNouvPerso = (Personnage*)malloc(sizeof(Personnage));
+	return *pNouvPerso != NULL;
 }
 
 void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouvPerso) {
