@@ -29,12 +29,14 @@
 	char* nomObtenu(Message* pLexique);
 	bool personnageExiste(Joueur* pDebJoueurs, char nom[TNOM]);
 	int pointsObtenu(Message* pLexique);
-	CodeErreur ajouterPersonnageAJoueur(Message* pLexique, Joueur* pDebJoueurs, Joueur* pJoueur, Joueur* pNouvPerso);
+	CodeErreur ajouterPersonnageAJoueur(Message* pLexique, Joueur* pDebJoueurs, Joueur* pJoueur, Personnage* pNouvPerso);	
 	CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs);
 	void supprimeJoueur(Joueur* pDebJoueurs, Joueur* pJoueur, Joueur* pSauvJoueur);
 	CodeErreur supprimerJoueurPersonnages(Message* pLexique, Joueur* pDebJoueur);
 	void ajoutePersonnage(Joueur* pJoueur, char nom[TNOM], int xp, Personnage* pNouvPerso); 
-	void libererJoueur(Joueur* pJoueur); 
+	void libererJoueur(Joueur* pJoueur);
 	CodeErreur sauverJoueurs(Joueur* pDebJoueurs);
+	char* pseudoObtenu(Message* pLexique);
+	void afficherJoueursPersonnages(Message* pLexique, Joueur* pDebJoueurs);
 #endif 
 

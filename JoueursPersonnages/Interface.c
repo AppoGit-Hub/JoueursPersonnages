@@ -107,9 +107,9 @@ void dialogue(Message* pLexique) {
 
 
 CodeErreur ajouterPersonnage(Message* pLexique, Joueur* pDebJoueurs) {
-	Personnage* pNouvPerso;
-	Joueur* pJoueur;
-	Joueur* pSauvJoueur;
+	Personnage* pNouvPerso = NULL;
+	Joueur* pJoueur = NULL;
+	Joueur* pSauvJoueur = NULL;
 	bool alocationOk;
 	char* pseudo;
 
@@ -151,7 +151,7 @@ char* nomObtenu(Message* pLexique) {
 	bool estValide;
 	do {
 		afficherMessage(pLexique, OBT_NOM);
-		scanf("%s", &nom);
+		scanf_s("%s", &nom, TNOM);
 		estValide = !strcmp(&nom, "");
 		if (!estValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + NOM_NON_VALIDE);
 	} while (!estValide);
@@ -163,36 +163,25 @@ int pointsObtenu(Message* pLexique) {
 	bool estValide;
 	do {
 		afficherMessage(pLexique, OBT_POINTS);
-		scanf("%d", &points);
+		scanf_s("%d", &points);
 		estValide = points > 0 && points < 1000;
 		if (!estValide) afficherMessage(pLexique, NUM_DEB_MESSAGE_ERREUR + POINTS_NON_VALIDES);
 	} while (!estValide);
 	return points;
 }
 
-bool joueurExiste(Joueur* pDebJoueur, char* pseudo, Joueur* pJoueur, Joueur* pSauvJoueur) {
-	pJoueur = pDebJoueur;
-	bool existe;
-	while (pJoueur != NULL && pseudo > pJoueur->pseudo) {
-		pSauvJoueur = pJoueur;
-		pJoueur = pJoueur->pSuiv;
-	}
-	existe = pJoueur != NULL && pseudo == pJoueur->pseudo;
-	return existe;
-}
-
 CodeErreur ajouterJoueurPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 	CodeErreur codeErreur;
-	Joueur* pNouvJoueur;
+	Joueur* pNouvJoueur = NULL;
 	int reponse;
 	bool  allocationOk = nouveauJoueur(pNouvJoueur);
 	if (!allocationOk) codeErreur = ALLOCATION_MEMOIRE;
 	else {
 		codeErreur = PAS_D_ERREUR;
 		afficherTitre(pLexique, TITRE_JOUEUR_AJOUT);
-		char* pseudo[TPSEUDO] = pseudoObtenu(pLexique);
-		Joueur* pJoueur;
-		Joueur* pSauvJoueur;
+		char* pseudo = pseudoObtenu(pLexique);
+		Joueur* pJoueur = NULL;
+		Joueur* pSauvJoueur = NULL;
 		bool existe = joueurExiste(pDebJoueurs, pseudo, pJoueur, pSauvJoueur);
 		
 		if (existe) {
@@ -201,12 +190,12 @@ CodeErreur ajouterJoueurPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 		}
 		else {
 			ajouteJoueur(pDebJoueurs, pseudo, pNouvJoueur, pJoueur, pSauvJoueur);
-			Personnage* pNouvPerso;
+			Personnage* pNouvPerso = NULL;
 			do {
 				allocationOk = nouveauPersonnage(pNouvPerso);
-				if (!allocationOk	) codeErreur = ALLOCATION_MEMOIRE;
+				if (!allocationOk) codeErreur = ALLOCATION_MEMOIRE;
 				else {
-					codeErreur = ajouterPersonnageAjoueur(pLexique, pDebJoueurs, pNouvJoueur, pNouvPerso);
+					codeErreur = ajouterPersonnageAJoueur(pLexique, pDebJoueurs, pNouvJoueur, pNouvPerso);
 					if (codeErreur == PAS_D_ERREUR) {
 						reponse = reponseObtenue(pLexique, OBT_ENCORE);
 					}

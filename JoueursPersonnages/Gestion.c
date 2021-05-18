@@ -24,7 +24,7 @@ void liberePersonnage(Personnage* pPersonnage) {
 	free(pPersonnage);
 }
 
-void libereJoueur(Joueur* pJoueur) {
+void libererJoueur(Joueur* pJoueur) {
 	free(pJoueur);
 }
 bool nouveauJoueur(Joueur* pNouvJoueur) {
@@ -90,7 +90,7 @@ void supprimeJoueur(
 	}
 	if (pJoueur = pDebJoueurs) { pDebJoueurs = pJoueur->pSuiv; }
 	else { pSauvJoueur->pSuiv = pJoueur->pSuiv; }
-	libereJoueur(pJoueur);
+	libererJoueur(pJoueur);
 }
 
 CodeErreur ajouterPersonnageAJoueur(
