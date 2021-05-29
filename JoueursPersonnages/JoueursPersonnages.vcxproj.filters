@@ -27,9 +27,6 @@
     <ClCompile Include="Interface.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Lexique.c">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Principale.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -42,6 +39,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="JoueursPersonnages.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,5 +57,10 @@
     <None Include="Joueurs.dat">
       <Filter>Fichiers de ressources</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Lexique.obj">
+      <Filter>Fichiers sources</Filter>
+    </Object>
   </ItemGroup>
 </Project>

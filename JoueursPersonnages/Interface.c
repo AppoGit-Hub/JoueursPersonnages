@@ -11,30 +11,6 @@
 //FonctionS de Gestion pour tout ce qui concerne la manipulation de la liste cha�n�e des joueurs en m�moire
 //FonctionS de Fichier pour le chargement et la sauvegarde
 
-void afficherMessage(Message* pLexique, int numMessage) {
-	char* message;
-	if (numMessage > 2000 && numMessage < 3000 ||
-		numMessage > NUM_DEB_MESSAGE_ERREUR || 
-		numMessage > 3400 && numMessage < NUM_DEB_MESSAGE_ERREUR) 
-	{
-		message = rechercheLexique(pLexique, numMessage);
-		if (message) printf("%s", message);
-	}
-}
-
-int afficherMenu(Message* pLexique, int debMenu) {
-	for (int m = 0; m < 8; m++)
-		printf("%s", rechercheLexique(pLexique, MENU_PRINCIPAL + m));
-	return 8;
-}
-
-void afficherTitre(Message* pLexique, int numTitre) {
-	if (numTitre < TITRE_PRINCIPAL || 
-		numTitre > NUM_DEB_MESSAGE_ERREUR) return;
-	char* titre = rechercheLexique(pLexique, numTitre);
-	if (titre) printf("%s", titre);
-}
-
 ChoixMenu choixObtenu(Message* pLexique, int numMenu) {
 	int maxChoix;
 	int choix;
@@ -197,7 +173,7 @@ CodeErreur ajouterJoueurPersonnages(Message* pLexique, Joueur* pDebJoueurs) {
 		if (codeErreur != PAS_D_ERREUR) return codeErreur;
 		
 		reponse = reponseObtenue(pLexique, OBT_ENCORE); 
-	} while (allocationOk || codeErreur == PAS_D_ERREUR || reponse == OUI);
+	} while (allocationOk && codeErreur == PAS_D_ERREUR && reponse == OUI);
 	return PAS_D_ERREUR;
 }
 

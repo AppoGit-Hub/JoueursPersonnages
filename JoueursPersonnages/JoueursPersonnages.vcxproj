@@ -143,13 +143,13 @@
     <ClCompile Include="Gestion.c" />
     <ClCompile Include="Interface.c" />
     <ClCompile Include="JoueursPersonnages.c" />
-    <ClCompile Include="Lexique.c" />
     <ClCompile Include="Principale.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="JoueursPersonnages.h" />
     <ClInclude Include="Lexique.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="English.txt" />
@@ -157,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Joueurs.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Lexique.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

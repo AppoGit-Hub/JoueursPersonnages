@@ -7,6 +7,7 @@
 
 //NOTE: s'occupe de la lecture et de l'écriture. Si manip liste->demande a Gestion.c
 
+/*
 CodeErreur chargerLexique(Message** pPLexique) {
 	FILE* pFIFrancais;
 
@@ -36,6 +37,7 @@ CodeErreur chargerLexique(Message** pPLexique) {
 	fclose(pFIFrancais);
 	return PAS_D_ERREUR;
 }
+*/
 
 CodeErreur fichierExiste() {
 	FILE* pFIJoueurs;
